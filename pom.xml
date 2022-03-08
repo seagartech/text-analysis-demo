@@ -20,4 +20,11 @@
             <version>1.0.0</version>
         </dependency>
     </dependencies>
+
+    <repositories>
+        <repository>
+            <id>seagartech</id>
+            <url>https://maven.seagartech.com/repository/maven-public/</url>
+        </repository>
+    </repositories>
 </project>
