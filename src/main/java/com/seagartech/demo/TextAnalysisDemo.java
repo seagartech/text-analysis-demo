@@ -44,7 +44,7 @@ public class TextAnalysisDemo {
                     30);
 
             Long checkTime = System.currentTimeMillis() - startTime;
-            System.out.println("《《《《《《《《《《《《《《《《《 比对结果 》》》》》》》》》》》》》》》》》》");
+            System.out.println("《《《《《《《《《《《《《《《《《 比对结果，结果已同步输出到根路径的out.txt中 》》》》》》》》》》》》》》》》》》");
             System.out.println("预加载对比库用时:" + prepareTime + "毫秒，建议项目启动时加载一次，无需每次对比加载");
             System.out.println("比对用时:" + checkTime + "毫秒");
             System.out.println("共比对了:" + checkDuplicateResult.getCompareNum() + " 次");
