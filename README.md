@@ -9,6 +9,8 @@
 #### 使用说明
 
 详见代码样例
+依赖jar包较大，如果无法下载可访问百度网盘获取
+链接: https://pan.baidu.com/s/1zP2VyBf2UQYzZfVWvCnjVw 提取码: i70s
 
 #### 示例截图
 截图1:
