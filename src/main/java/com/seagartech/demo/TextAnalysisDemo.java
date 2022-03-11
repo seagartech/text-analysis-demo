@@ -53,7 +53,6 @@ public class TextAnalysisDemo {
             for (int i = 0; i < checkDuplicateResult.getMatchItemList().size(); i++) {
                 MatchItem matchItem = checkDuplicateResult.getMatchItemList().get(i);
                 System.out.println("相似的文件对是：" + matchItem.getTargetFileName() + "    " + matchItem.getSimilarFileName());
-                System.out.println("两个文件的总段落数分别是：" + matchItem.getTargetParagraphNum() + " 和 " + matchItem.getSimilarParagraphNum());
                 // 受空格、回车、标点符号、图片以及表格等特殊格式影响，字数统计影响较大，只用于参考
                 System.out.println("两个文件字数分别是：" + matchItem.getTargetFileTextLength() + " 和 " + matchItem.getSimilarFileTextLength() + "\n");
                 System.out.println("相似分数：" + matchItem.getSimilarScore() + "\n");
