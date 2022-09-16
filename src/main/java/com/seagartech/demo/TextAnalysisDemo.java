@@ -1,5 +1,6 @@
 package com.seagartech.demo;
 
+import com.seagartech.textAnalysis.config.Config;
 import com.seagartech.textAnalysis.entity.CheckDuplicateResult;
 import com.seagartech.textAnalysis.entity.SimilarItem;
 import com.seagartech.textAnalysis.entity.SimilarSubItem;
@@ -21,11 +22,13 @@ public class TextAnalysisDemo {
             // 访问 https://www.seagartech.com/api-license/trial/registerForTrial?machineCode=《机器码》
             // 复制返回值的 data 字段，配置许可文件后方可使用
 //            LicenseUtils.setLicense("=== 设置从网站获取的license ===");
-            LicenseUtils.setLicense("c2VhZ2FydGVjaC1saWNlbnNlrO0ABXNyACtjb20uc2VhZ2FydGVjaC5saWNlbnNlLmNsaWVudC5MaWNlbnNlRW50aXR508JNjTc2vzMCAAVKAAlhcHBseVRpbWVKAApleHBpcmVUaW1lTAADbWQ1dAASTGphdmEvbGFuZy9TdHJpbmc7WwAKcHVibGljS2V5c3QAAltCWwAJc3BsaXRGbGFncQB+AAJ4cAAAAX/8bOpIAAABgAvf/j50ACA5N2M5YzdhZDZkMjU3NTI0MWM1YmRjODY5MjM2ZTllM3VyAAJbQqzzF/gGCFTgAgAAeHAAAACiMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCC7XQrdlDpchjRu9rtccOT9oBqIX8XcdQf8VxJnkXnUpG3E1+SA9q3faWXLJb8ZgTYu5sfOKoh/KBKtW8/D9VnaxpiWxbtd438Jl1LFVdSYPP3L8QbeSj7lHQQDJ4wher2kza4zMkpZ+TQ4KSlUA8R096hD0hLxNUxOHOP0PEBDwIDAQABdXEAfgAFAAAAAgQuegAAAUQELgAAAX/8bOpIAAABgAvf/j4ELqIwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAILtdCt2UOlyGNG72u1xw5P2gGohfxdx1B/xXEmeRedSkbcTX5ID2rd9pZcslvxmBNi7mx84qiH8oEq1bz8P1WdrGmJbFu13jfwmXUsVV1Jg8/cvxBt5KPuUdBAMnjCF6vaTNrjMySln5NDgpKVQDxHT3qEPSEvE1TE4c4/Q8QEPAgMBAAEELoBgEoLA082sb/9yGkVIIhYPyQ0J1KilYe5km1zMgwDDD3WXfgX3xcwD3zImY2thq33IDv3gvmqhVYAur/vDqjdrx+vTIsZuT6laoPNSm7ZFyuJyGiQz3SK4l1LFgYBscJMvG/o4b9Fr1DxHb8Nbmqdwubi/cjp5L8rFUtDQFw8YewQuAAAAAAAAABZ3i4AKG2J/whsXf/KZ56ZyB5KqSkf7qBfAeeXDAHOhBirpGU8dm4ze7kIXWP5btNMNtdYRZ7jTn88dR9A2zs1VJd5ShcgVuiYboM1dUh/ovHFjW2sqVShZIqI6luf6pJsZIdCv6qpd86HZvahB0OmiICfMTMlARaEMjZln1D/w/4VHbwQuAAAAAAAAADN3i4AKUm1GYZB0AJDHFAcZ9XWFMspR9eUTB/XWS6zDbVo5mJgoV9FJOA8CliHmc/pxRnh13U3Y1qQpNlKj/fHPOp+mlSbFGCRCWrZjRPWqeJDEjHrBew0khV80GE0dtjDvG8l9/v3IW8qGlEto0qxSGemnOZ1Ph0jqh3ajO4+tlQ7pBAQuAAAAAAAAAB53i4B0Q4OFkT6cNcQZdIBWyKiIEWyTCtqXDeElV5GE3cGLyhO0DeaNxD4L6RBv2m8G06wC/yX63tsjsWtLx1Mnc7B0IvW5qs5YrgBTksRGe/+iAynSi1qpPUxbQ4gpVAmwqJxoUdpM9Jh8jyyOu7Uc/n0BGDE4TD2SB6K6aDakyfDMxQQuAAAAAAAAAAF3AQA=");
+            LicenseUtils.setLicense("c2VhZ2FydGVjaC1saWNlbnNlrO0ABXNyACtjb20uc2VhZ2FydGVjaC5saWNlbnNlLmNsaWVudC5MaWNlbnNlRW50aXR508JNjTc2vzMCAAVKAAlhcHBseVRpbWVKAApleHBpcmVUaW1lTAADbWQ1dAASTGphdmEvbGFuZy9TdHJpbmc7WwAKcHVibGljS2V5c3QAAltCWwAJc3BsaXRGbGFncQB+AAJ4cAAAAYNEkpJUAAABg1QFpjV0ACA0MDQ2ZjkzNThhODY5MjU4Nzg1YWQ1ZTE3Njg1YjAxMnVyAAJbQqzzF/gGCFTgAgAAeHAAAACiMIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQCJFDYZVbNZG0YiSmeZ3lEXY1vJuB51S9VMe75+fZfV7+Q4tBu8T8U8Z2IPulJWFlP1RbOg9W7R7dcGJxHyilkp6ybTyPdqczefPpoYbeYVqbls4J6txlYktanLFTPLwIQ/rGwSVVDLLOfd1/+kfLqLjNiNHjMdlZ5HYkEX7fwX4QIDAQABdXEAfgAFAAAAAmwwegAAAURsMAAAAYNEkpJUAAABg1QFpjVsMKIwgZ8wDQYJKoZIhvcNAQEBBQADgY0AMIGJAoGBAIkUNhlVs1kbRiJKZ5neURdjW8m4HnVL1Ux7vn59l9Xv5Di0G7xPxTxnYg+6UlYWU/VFs6D1btHt1wYnEfKKWSnrJtPI92pzN58+mhht5hWpuWzgnq3GViS1qcsVM8vAhD+sbBJVUMss593X/6R8uouM2I0eMx2VnkdiQRft/BfhAgMBAAFsMIBRajIWoZQbSYiFUdYqgT4vaFzuQaSAZJq2FWqpN0Bc9iAP49ZtEicXnYYrzqp6HreNB/pHkmi0GKuc5K8nVpCpjdRi45FkjVpjR3WEnou7E6nkHM2SoY/PI8202iWhiHLLneNUf6+YMnY85b45efBJKFluYRdJWDodW3o8EghJ42wwAAAAAAAAABV3i4BBox6nfrA5Uck7yxtbJ23uCD34D0k8cWTUyd8IfRKiF2Z71yt2hA0ifFljMaej7AzAbiZEQpf6KvPWlENNIcV1/fvpxsUiH/hIq52JO2bdV44E5Qoh3UCQ0014LZnYbeBA45NOPmY9vGiKN7mw3H8q90WaWdN1MHjfyQapkHUCj2wwAAAAAAAAABF3i4BrUyQ1EbqGpNN+CmimC+HyANhDQKZv9ALT5U43nI4AwBNQ0x/PRjt6Ow5X8kn4Ax7nK63BqUc6pht+4rhHxWXTXWCMNTL5VcErzKibyorPFtC1s9Y30jEvMwrAJK6Px3MgC9YcN5zSt/L8q4u2v6VpPDCyCnzsx69vbVlLI9g7pGwwAAAAAAAAABV3i4BRiUJrZf8PdcVI3U9SZ3CSARFcHBNzTVAq3YDzR+SfgSAWQhc/sCtVDJDaZdaw3AwOvGUsxccPH4mYaH30TbppUr0AnXitbAf0VJfQOe+aCXyxn50hfljS5ZWPaCDAIm/WagDB1moPQhfxIK97BsRy2ytWVo1631kramcDLDpsNWwwAAAAAAAAAAV3AQA=");
 
+            // 线程数，可根据机器配置高低设定
+            Config.threadNum = 4;
             // 可设置文件 或 文件夹
-            String targetFilePath = "/Users/liangyue/Desktop/checktest/测试英文.docx";
-            String compareFilePath = "/Users/liangyue/Desktop/checktest/比对英文.docx";
+            String targetFilePath = "/Users/liangyue/Desktop/checktest/测试-需要对比的文档的副本.doc";
+            String compareFilePath = "/Users/liangyue/Desktop/checktest/test4/";
             // 报告生成路径（不需要生成可为空字符串）
             String reportFilePath = "/Users/liangyue/Desktop/checktest/report-s";
             // 预加载需要比对的源文件
